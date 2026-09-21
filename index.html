@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Libny! 🎂</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <!--stars -->
+    <div id="stars"></div>
+
+    <!--password screen-->
+    <main class="lock-screen" id="lockscreen">
+        <div class="lock-icon">🔐</div><!--1f510-->
+        <p class="small-text">
+            A little surprise is waiting...
+        </p>
+        <h1>
+            Hey Libny...
+        </h1>
+        <p class="description">
+            This surprise is locked. <br>
+            Only you can open it.
+        </p>
+        <input type="password" id="passcode" placeholder="Enter secret code">
+        <button id="unlockButton">
+            🔐 Unlock Surprise
+        </button>
+        <p id="errorMessage"></p>
+    </main>
+
+    <!--balloon-->
+    <section class="balloon-screen" id="balloonScreen">
+        <h1>🎈 Okay Libny... 🎈</h1>
+        <p class="balloon-instruction">
+            Before you get your cake...
+        </p>
+        <h2> POP ALL THE BALLONS! 🎈</h2>
+        <p id="balloonCounter">Balloons left: 6</p>
+        <div id="balloonArea"></div>
+    </section>
+
+    <!--cake + wish-->
+    <section class="cake-screen" id="cakeScreen" style="display: none;">
+        <div class="cake-message">
+            <p class="cake-small-text">You made it ✨</p>
+            <h1> Make a wish, Libny...✨</h1>
+        </div>
+
+        <!--cake-->
+        <div class="cake">
+            <!--candles-->
+            <div class="candles">
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+            </div>
+
+            <!--CAKE LAYERS-->
+            <div class="cake-top"></div>
+            <div class="cake-middle"></div>
+            <div class="cake-bottom"></div>
+        </div>
+
+        <p class="blow-message"> 🕯Blow out the candles!</p>
+        <button id="blowButton">Blow</button>
+
+        <div id="birthdayMessage" class="birthday-message">
+            <h1>🎉 HAPPY BIRTHDAY 🎉</h1>
+            <p>Wishing you a wonderful year ahead! 💫</p>
+            <button id="continueButton" class="wish-button">💌 See your message</button>
+        </div>
+
+        <audio id="bigPopSound" preload="auto">
+            <source src="sounds/big-pop.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="birthdayMusic" preload="auto" loop>
+            <source src="sounds/happy-birthday.mp3" type="audio/mpeg">
+        </audio>
+    </section>
+
+    <!--PADS-->
+    <section class="music-screen" id="musicScreen">
+        <div class="electro-pads">
+        <div class="topbar">
+          <h1>ELECTRO PADS</h1>
+          <button class="gear" id="gearBtn" aria-label="Settings">⚙</button>
+        </div>
+        <div class="subtitle">Tap a pad, or press its key</div>
+        <div class="transport">
+          <select id="kitSelect">
+            <option value="Rock">Rock Kit</option>
+            <option value="HipHop">Hip-Hop Kit</option>
+            <option value="Electronic" selected>Electronic Kit</option>
+          </select>
+          <button id="recordBtn">● Rec</button>
+          <button id="playBtn">▶ Play</button>
+          <button id="loopBtn">🔁 Loop</button>
+          <button id="giftButton" class="gift-trigger">🎁 Gift</button>
+        </div>
+
+        <div class="grid" id="grid"></div>
+
+        <div class="overlay" id="overlay">
+          <div class="sheet">
+            <div class="sheet-header">
+              <h2>SOUND CONTROLS</h2>
+              <button id="closeSettings" aria-label="Close">✕</button>
+            </div>
+
+            <div class="panel-group">
+              <h3>Main</h3>
+              <div class="panel-body">
+                <label>Volume
+                  <input type="range" id="volume" min="0" max="1" step="0.01" value="0.8">
+                </label>
+                <label>Length
+                  <input type="range" id="sustain" min="0.05" max="1.2" step="0.05" value="0.3">
+                </label>
+              </div>
+            </div>
+
+            <div class="panel-group">
+              <h3>Timing</h3>
+              <div class="panel-body">
+                <label>Tempo: <span id="bpmLabel">100</span> BPM
+                  <input type="range" id="tempo" min="40" max="200" step="1" value="100">
+                </label>
+                <label>&nbsp;
+                  <button id="metroToggle" type="button">🔔 Metronome</button>
+                </label>
+                <label>&nbsp;
+                  <button id="quantizeToggle" type="button" class="on">⏱ Quantize</button>
+                </label>
+              </div>
+            </div>
+
+            <div class="panel-group">
+              <h3>Envelope (ADSR)</h3>
+              <div class="panel-body">
+                <label>Attack
+                  <input type="range" id="attack" min="0" max="0.4" step="0.005" value="0.002">
+                </label>
+                <label>Decay
+                  <input type="range" id="decay" min="0.01" max="0.8" step="0.01" value="0.12">
+                </label>
+                <label>Sustain
+                  <input type="range" id="sustainLevel" min="0" max="1" step="0.01" value="0.35">
+                </label>
+                <label>Release
+                  <input type="range" id="release" min="0.01" max="1.5" step="0.01" value="0.12">
+                </label>
+              </div>
+            </div>
+
+            <div class="panel-group">
+              <h3>Tone &amp; Drive</h3>
+              <div class="panel-body">
+                <label>Tone
+                  <input type="range" id="tone" min="0" max="1" step="0.01" value="0.8">
+                </label>
+                <label>Drive
+                  <input type="range" id="drive" min="0" max="1" step="0.01" value="0.25">
+                </label>
+              </div>
+            </div>
+
+            <div class="panel-group">
+              <h3>Mixer</h3>
+              <div class="panel-body" id="mixerBody">
+                <!-- rows injected by JS: slider + mute/solo per channel -->
+              </div>
+            </div>
+
+            <div class="panel-group">
+              <h3>FX</h3>
+              <div class="panel-body">
+                <label>Reverb
+                  <input type="range" id="reverbAmt" min="0" max="1.5" step="0.01" value="1">
+                </label>
+                <label>Delay
+                  <input type="range" id="delayAmt" min="0" max="0.6" step="0.01" value="0">
+                </label>
+              </div>
+            </div>
+
+            <div class="panel-group">
+              <h3>Pad Levels</h3>
+              <div class="pad-levels" id="padLevels">
+                <!-- rows injected by JS: one slider per pad -->
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+    </section>
+
+    <script src="script2.js"></script>
+</body>
+</html>
